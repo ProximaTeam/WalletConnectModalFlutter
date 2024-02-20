@@ -11,8 +11,8 @@ import 'package:walletconnect_modal_flutter/services/explorer/explorer_service_s
 import 'package:walletconnect_modal_flutter/services/explorer/i_explorer_service.dart';
 import 'package:walletconnect_modal_flutter/services/storage_service/storage_service_singleton.dart';
 import 'package:walletconnect_modal_flutter/services/utils/core/core_utils_singleton.dart';
-import 'package:walletconnect_modal_flutter/services/utils/toast/toast_message.dart';
 import 'package:walletconnect_modal_flutter/services/utils/platform/platform_utils_singleton.dart';
+import 'package:walletconnect_modal_flutter/services/utils/toast/toast_message.dart';
 import 'package:walletconnect_modal_flutter/services/utils/toast/toast_utils_singleton.dart';
 import 'package:walletconnect_modal_flutter/services/utils/url/url_utils_singleton.dart';
 import 'package:walletconnect_modal_flutter/services/utils/widget_stack/widget_stack_singleton.dart';
@@ -223,6 +223,7 @@ class WalletConnectModalService extends ChangeNotifier
         useSafeArea: true,
         context: context,
         builder: (context) {
+          this.context = context;
           return root;
         },
       );
@@ -233,14 +234,9 @@ class WalletConnectModalService extends ChangeNotifier
         useRootNavigator: true,
         anchorPoint: Offset(0, 0),
         context: context,
-        builder: (_) {
-          return Dialog(
-            clipBehavior: Clip.hardEdge,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 360, maxHeight: 600),
-              child: root,
-            ),
-          );
+        builder: (context) {
+          this.context = context;
+          return root;
         },
       );
     }

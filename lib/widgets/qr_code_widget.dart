@@ -62,7 +62,7 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
     bool isLongBottomSheet = platformUtils.instance.isLongBottomSheet(
       MediaQuery.of(context).orientation,
     );
-    double qrSize = MediaQuery.of(context).size.height - 200;
+    double qrSize = MediaQuery.of(context).size.height / 2;
     double marginAndPadding = isLongBottomSheet ? 1.0 : 8.0;
 
     if (!_initialized) {
@@ -94,19 +94,17 @@ class _QRCodeWidgetState extends State<QRCodeWidget> {
           themeData.radiusL,
         ),
       ),
-      constraints: isLongBottomSheet
-          ? BoxConstraints(
-              maxHeight: qrSize,
-              maxWidth: qrSize,
-            )
-          : null,
-      margin: EdgeInsets.all(marginAndPadding),
+      constraints: BoxConstraints(
+        maxHeight: qrSize,
+        maxWidth: qrSize,
+      ),
+      margin: EdgeInsets.all(marginAndPadding).copyWith(bottom: 35),
       padding: EdgeInsets.all(marginAndPadding),
       child: Center(
         child: QrImageView(
           data: _qrCode,
           version: QrVersions.auto,
-          // size: 300.0,
+          size: qrSize,
           eyeStyle: const QrEyeStyle(
             eyeShape: QrEyeShape.circle,
             color: Colors.black,

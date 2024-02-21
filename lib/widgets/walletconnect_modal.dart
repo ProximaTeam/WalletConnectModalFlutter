@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:walletconnect_modal_flutter/constants/constants.dart';
 import 'package:walletconnect_modal_flutter/models/walletconnect_modal_theme_data.dart';
+import 'package:walletconnect_modal_flutter/pages/help_page.dart';
 import 'package:walletconnect_modal_flutter/services/utils/platform/platform_utils_singleton.dart';
 import 'package:walletconnect_modal_flutter/services/utils/widget_stack/widget_stack_singleton.dart';
 import 'package:walletconnect_modal_flutter/widgets/toast/walletconnect_modal_toast_manager.dart';
@@ -141,45 +142,45 @@ class _WalletConnectModalState extends State<WalletConnectModal> {
                 ),
                 Row(
                   children: <Widget>[
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //     color: _body?.key ==
-                    //             WalletConnectModalConstants.helpPageKey
-                    //         ? themeData.inverse100
-                    //         : themeData.inverse000,
-                    //     borderRadius: BorderRadius.circular(
-                    //       modalWidgetHeight / 2,
-                    //     ),
-                    //   ),
-                    //   height: modalWidgetHeight,
-                    //   width: modalWidgetHeight,
-                    //   child: WalletConnectIconButton(
-                    //     key: WalletConnectModalConstants.helpButtonKey,
-                    //     iconPath: 'assets/icons/help.svg',
-                    //     color: _body?.key ==
-                    //             WalletConnectModalConstants.helpPageKey
-                    //         ? themeData.inverse000
-                    //         : themeData.inverse100,
-                    //     onPressed: () {
-                    //       if (_body?.key ==
-                    //           WalletConnectModalConstants.helpPageKey) {
-                    //         widgetStack.instance.pop();
-                    //         return;
-                    //       } else if (widgetStack.instance.containsKey(
-                    //         WalletConnectModalConstants.helpPageKey,
-                    //       )) {
-                    //         widgetStack.instance.popUntil(
-                    //           WalletConnectModalConstants.helpPageKey,
-                    //         );
-                    //       } else {
-                    //         widgetStack.instance.add(
-                    //           const HelpPage(),
-                    //         );
-                    //       }
-                    //     },
-                    //   ),
-                    // ),
-                    // const SizedBox(width: 14),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: _body?.key ==
+                                WalletConnectModalConstants.helpPageKey
+                            ? themeData.inverse100
+                            : themeData.inverse000,
+                        borderRadius: BorderRadius.circular(
+                          modalWidgetHeight / 2,
+                        ),
+                      ),
+                      height: modalWidgetHeight,
+                      width: modalWidgetHeight,
+                      child: WalletConnectIconButton(
+                        key: WalletConnectModalConstants.helpButtonKey,
+                        iconPath: 'assets/icons/help.svg',
+                        color: _body?.key ==
+                                WalletConnectModalConstants.helpPageKey
+                            ? themeData.inverse000
+                            : themeData.inverse100,
+                        onPressed: () {
+                          if (_body?.key ==
+                              WalletConnectModalConstants.helpPageKey) {
+                            widgetStack.instance.pop();
+                            return;
+                          } else if (widgetStack.instance.containsKey(
+                            WalletConnectModalConstants.helpPageKey,
+                          )) {
+                            widgetStack.instance.popUntil(
+                              WalletConnectModalConstants.helpPageKey,
+                            );
+                          } else {
+                            widgetStack.instance.add(
+                              const HelpPage(),
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 14),
                     Container(
                       decoration: BoxDecoration(
                         color: themeData.inverse000,
@@ -215,11 +216,7 @@ class _WalletConnectModalState extends State<WalletConnectModal> {
               children: [
                 SafeArea(
                   child: TransitionContainer(
-                    child: TransitionContainer(
-                      child: SizedBox(
-                          width: MediaQuery.of(context).size.height / 2 + 300,
-                          child: _buildBody()),
-                    ),
+                    child: _buildBody(),
                   ),
                 ),
                 const WalletConnectModalToastManager(),
